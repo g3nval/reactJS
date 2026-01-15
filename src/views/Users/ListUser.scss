@@ -1,0 +1,51 @@
+.list-user-container {
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  padding: 30px;
+  margin-top: 20px;
+
+  .title {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  .list-user-content {
+    width: 100%;
+    
+    .child {
+      border: 1px solid #e3e6f0;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      padding: 15px;
+      display: flex; /* Dàn hàng ngang */
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
+      background: var(--white);
+
+      &:hover {
+        background-color: #f1f3f9;
+        transform: scale(1.01);
+        box-shadow: var(--shadow-sm);
+        border-left: 4px solid var(--primary-color);
+      }
+
+      /* Phần hiển thị tên */
+      span {
+        font-weight: 500;
+        cursor: pointer;
+        color: var(--text-color);
+        font-size: 16px;
+      }
+    }
+  }
+  
+  /* Loading text */
+  div:not(.child) {
+    font-style: italic;
+    color: var(--secondary-color);
+  }
+}

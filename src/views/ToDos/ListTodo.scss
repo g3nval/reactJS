@@ -1,0 +1,86 @@
+.list-todo-container {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  max-width: 600px;
+  margin: 20px auto; /* Căn giữa trang */
+
+  p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+
+  .add-todo {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+
+    input {
+      flex-grow: 1;
+      padding: 10px 15px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+      transition: border-color 0.3s;
+
+      &:focus {
+        border-color: var(--primary-color);
+      }
+    }
+
+    .add {
+      background-color: var(--primary-color);
+      color: white;
+      min-width: 80px;
+      
+      &:hover {
+        background-color: #2e59d9;
+      }
+    }
+  }
+
+  .todo-content {
+    .todo-child {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+
+      span {
+        font-size: 16px;
+      }
+
+
+      /* Các nút hành động */
+      button {
+        margin-left: 10px;
+        padding: 10px 20px;
+        font-size: 12px;
+      }
+
+      .edit {
+        background-color: var(--warning-color);
+        color: #fff;
+      
+      }
+
+      .delete {
+        background-color: var(--danger-color);
+        color: #fff;
+      }
+      
+      .save {
+         background-color: var(--success-color);
+         color: #fff;
+      }
+    }
+  }
+}

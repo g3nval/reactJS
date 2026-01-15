@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+
+:root {
+  --primary-color: #4e73df;      
+  --secondary-color: #858796;    
+  --success-color: #1cc88a;      
+  --danger-color: #e74a3b;       
+  --warning-color: #f6c23e;      
+  --light-bg: #282c35;          
+  --dark-bg: #222;               
+  --text-color: #ffffff;       
+  --white: #282c35;
+  --font-main: 'Inter', sans-serif;
+  --shadow-sm: 0 .125rem .25rem 0 rgba(58,59,69,.2);
+  --shadow-md: 0 .5rem 1rem 0 rgba(58,59,69,.15);
+}
+
+/* --- 2. Global Reset --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--light-bg);
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.App {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container chung căn giữa nội dung */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+}
+
+/* Button Styles chung */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 5px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  
+  &:hover { 
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+.App-logo {
+  height: 80px;         
+  width: auto;          
+  pointer-events: none;
+  margin-bottom: 20px;
+
+ 
+  @media (prefers-reduced-motion: no-preference) {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
