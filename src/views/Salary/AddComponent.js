@@ -41,16 +41,18 @@ class AddComponent extends React.Component {
         return (
             <div className='add-salary-container'>
                 <form>
-                    <label htmlFor="name">Name:</label>
+                    <label htmlFor="name">Name</label>
                     <input
                         type="text"
+                        placeholder="Name"
                         value={this.state.name}
                         onChange={(event) => this.handleChangeName(event)}
                     />
 
-                    <label htmlFor="salary">Salary:</label>
+                    <label htmlFor="salary">Salary</label>
                     <input
                         type="text"
+                        placeholder="Salary"
                         value={this.state.salary}
                         onChange={(event) => this.handleChangeSalary(event)}
                     />

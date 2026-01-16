@@ -37,10 +37,14 @@ class AddTodo extends React.Component {
 
 
             <div className='add-todo'>
-                <input type='text' value={title}
-                    onChange={(event) => this.handleOnChangeTitle(event)}
-                    onKeyDown={(e) => e.key === 'Enter' && this.handleClickAddTodo()}
-                />
+                <div className='input-wrapper'>
+                    <input type='text'
+                        placeholder="Enter a new Todo"
+                        value={title}
+                        onChange={(event) => this.handleOnChangeTitle(event)}
+                        onKeyDown={(e) => e.key === 'Enter' && this.handleClickAddTodo()}
+                    />
+                </div>
                 <button className='add'
                     onClick={() => this.handleClickAddTodo()}
                 >Add</button>

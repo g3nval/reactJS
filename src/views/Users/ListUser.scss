@@ -7,7 +7,7 @@
 
   .title {
     font-size: 24px;
-    color: var(--primary-color);
+    color: #ffffff;
     margin-bottom: 20px;
     font-weight: 700;
   }
@@ -43,8 +43,5 @@
     }
   }
   
-  /* Loading text */
-  div:not(.child) {
-    font-style: italic;
-  }
+
 }

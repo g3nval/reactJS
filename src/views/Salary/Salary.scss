@@ -1,6 +1,6 @@
 /* Container chính bọc cả trang Salary */
 .salary-container {
-    background: #282c34; // Màu Dark theme
+    background: #282c34; 
     padding: 30px;
     border-radius: 15px;
     max-width: 600px;
@@ -35,14 +35,14 @@
                 border-radius: 5px;
                 font-weight: bold;
                 cursor: pointer;
-                /* Gradient Xanh lá - Trắng */
-                background: linear-gradient(45deg, #1cc88a, #1bffff);
-                color: #13855c;
+               
+                background: #1cc88a;
+                color: white;
                 transition: 0.3s;
 
                 &:hover {
                     transform: translateY(-2px);
-                    background: linear-gradient(45deg, #13855c, #1bffff);
+                    background: #13855c;
                 }
             }
         }
@@ -76,11 +76,11 @@
                 font-weight: bold;
                 cursor: pointer;
                 /* Gradient Đỏ - Trắng */
-                background: linear-gradient(45deg, #e74a3b, #ffffff);
-                color: #c0392b;
+                background: #e74a3b;
+                color: white;
 
                 &:hover {
-                    background: linear-gradient(45deg, #c0392b, #ffffff);
+                    background: #c0392b;
                 }
             }
         }
@@ -93,12 +93,13 @@
         border: 1px solid #4e73df;
         font-weight: bold;
         cursor: pointer;
-        /* Gradient Xanh dương - Trắng */
-        background: linear-gradient(45deg, #4e73df, #1bffff);
-        color: #2e59d9;
+        
+        background: #2374e1;
+        color: white;
         
         &:hover {
-            filter: brightness(1.1);
+            transform: translateY(-2px);
+            background: #0c55b5;
         }
     }
 }

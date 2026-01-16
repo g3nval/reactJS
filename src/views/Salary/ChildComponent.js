@@ -46,7 +46,7 @@ class ChildComponent extends React.Component {
                 <div className='salary-list-container'>
                     {showpeople === false ?
                         <div>
-                            <button className='btn-show'
+                            <button className='btn-show-hide'
                                 onClick={() => this.handleshowhide()}>
                                 Show
                             </button>
