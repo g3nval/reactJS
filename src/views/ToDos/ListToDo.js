@@ -77,10 +77,11 @@ class ListToDo extends React.Component {
         console.log(">>>check empty object; ", isEmptyObj);
         return (
             <>
-                <p>
-                    Simple React App with To-Do List &amp; Quan
-                </p>
+
                 <div className='ListToDo-container'>
+                    <h2>
+                        Simple React App with To-Do List &amp; Quan
+                    </h2>
                     <AddTodo
                         addNewTodo={this.addNewTodo}
 

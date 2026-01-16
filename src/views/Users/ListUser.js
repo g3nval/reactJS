@@ -27,23 +27,31 @@ class ListUser extends React.Component {
             <>
                 <div className='list-user-container'>
                     <div className='title'>
-                        Fetch all list users
+                        User Management
                     </div>
                     <div className='list-user-content'>
                         {ListUser && ListUser.length > 0 &&
                             ListUser.map((item, index) => {
                                 return (
-                                    <div className='child' key={item.id}
+                                    <div className='user-card' key={item.id}
                                         onClick={() => this.handleViewDetailUser(item)}
                                     >
-                                        {index + 1} - {item.email}
-
+                                        <div className="user-index">{index + 1}</div>
+                                        <div className="user-avatar">
+                                            <img src={item.avatar} alt="avatar"
+                                                onError={(e) => { e.target.src = 'https://via.placeholder.com/50' }}
+                                            />
+                                        </div>
+                                        <div className="user-info">
+                                            <div className="name">{item.name}</div>
+                                            <div className="email">{item.email}</div>
+                                        </div>
+                                        <div className="view-btn">
+                                            <span>Xem chi tiết</span>
+                                        </div>
                                     </div>
-
                                 )
-
                             })
-
                         }
                     </div>
                 </div>

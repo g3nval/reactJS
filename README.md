@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# 🚀 Simple React App - Todo & Salary Management
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Dự án này là một ứng dụng ReactJS cơ bản nhưng mạnh mẽ, tập trung vào việc quản lý danh sách công việc (To-Do List) và quản lý bảng lương (Salary Management).
 
-## Available Scripts
+## ✨ Tính năng chính
 
-In the project directory, you can run:
+### 📝 Quản lý To-Do
+- **Thêm mới:** Ô nhập liệu thiết kế theo phong cách Facebook "Bạn đang nghĩ gì thế?".
+- **Chỉnh sửa:** Hỗ trợ Edit và Save trực tiếp trên dòng.
+- **Xóa:** Xóa công việc kèm thông báo xác nhận.
+- **Thông báo:** Sử dụng `react-toastify` để hiển thị các thông báo đẹp mắt.
 
-### `npm start`
+### 💰 Quản lý Salary (Nhân sự)
+- **Thêm nhân sự:** Nhập tên và mức lương.
+- **Lọc dữ liệu:** Tự động lọc hiển thị những người có lương >= 1000$.
+- **Show/Hide:** Chế độ ẩn/hiện danh sách linh hoạt.
+- **Giao diện bảng:** Hiển thị dữ liệu dạng bảng chuyên nghiệp, thẳng hàng.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🎨 Công nghệ sử dụng
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend:** ReactJS (Class Components)
+- **Styling:** SCSS (Sass) với cấu trúc Nesting và Variables.
+- **Notifications:** `react-toastify`.
+- **Compiler:** Modern Sass API (Dart Sass).
 
-### `npm test`
+## 🛠️ Cài đặt và Chạy thử
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1. Clone dự án
 
-### `npm run build`
+git clone [https://github.com/username/ten-du-an.git](https://github.com/username/ten-du-an.git)
+cd ten-du-an
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 2. Cài đặt thư việnBash
+npm install
+# Hoặc
+yarn install
+### 3. Cài đặt Sass (Nếu chưa có)
+npm install sass
+### 4. Chạy dự ánBash
+npm start
+Ứng dụng sẽ chạy tại: http://localhost:3000.

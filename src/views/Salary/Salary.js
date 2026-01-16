@@ -43,14 +43,17 @@ class Salary extends React.Component {
         return (
             <>
                 <div className="salary-container">
-                    <AddComponent
-                        addnewPerson={this.addnewPerson}
-                    />
+                    <h2 className="salary-title">Salary Management</h2>
+                    <div className="salary-body">
+                        <AddComponent
+                            addnewPerson={this.addnewPerson}
+                        />
 
-                    <ChildComponent
-                        arraypeople={this.state.arraypeople}
-                        deletePerson={this.deletePerson}
-                    />
+                        <ChildComponent
+                            arraypeople={this.state.arraypeople}
+                            deletePerson={this.deletePerson}
+                        />
+                    </div>
                 </div>
             </>
         );

@@ -26,21 +26,40 @@ class DetailUser extends React.Component {
         let { user } = this.state;
         let isEmptyObj = Object.keys(user).length === 0;
         return (
-            <>
-                <div> DetailUser with id: {this.props.match.params.id}</div>
-                {isEmptyObj === false &&
-                    <>
-                        <div>User's Name: {user.name} </div>
-                        <div>User's email: {user.email} </div>
-                        <div>
-                            <img src={user.avatar} alt="avatar" />
+            <div className="detail-user-container">
+                <div className="user-card">
+                    <div className="card-header">User Profile</div>
+
+                    {isEmptyObj === false && (
+                        <div className="card-body">
+                            <div className="avatar-wrapper">
+                                <img src={user.avatar} alt="avatar" />
+                            </div>
+
+                            <div className="user-info">
+                                <div className="info-row">
+                                    <label>ID</label>
+                                    <span>#{user.id}</span>
+                                </div>
+                                <div className="info-row">
+                                    <label>Name</label>
+                                    <span>{user.name}</span>
+                                </div>
+                                <div className="info-row">
+                                    <label>Email</label>
+                                    <span>{user.email}</span>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <button onClick={() => this.handleBackButton()}>Back</button>
-                        </div>
-                    </>
-                }
-            </>
+                    )}
+
+                    <div className="card-footer">
+                        <button className="btn-back" onClick={() => this.handleBackButton()}>
+                            Back to List
+                        </button>
+                    </div>
+                </div>
+            </div>
         )
     }
 

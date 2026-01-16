@@ -19,7 +19,7 @@ class Home extends React.Component {
 
         return (
             <>
-                <div className="head">Hello from hompage with me!!</div>
+                <div className="head">WELCOME!</div>
                 <div>RANDOM COLOR</div>
                 <div>
                     <img src={channel} style={{ width: '800px', height: '450px', marginTop: '20px' }} alt="thumbnail" />

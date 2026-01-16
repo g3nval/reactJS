@@ -1,4 +1,6 @@
 import React from "react";
+
+
 class AddComponent extends React.Component {
 
     state = {
@@ -40,26 +42,32 @@ class AddComponent extends React.Component {
     render() {
         return (
             <div className='add-salary-container'>
-                <form>
-                    <label htmlFor="name">Name</label>
-                    <input
-                        type="text"
-                        placeholder="Name"
-                        value={this.state.name}
-                        onChange={(event) => this.handleChangeName(event)}
-                    />
+                <form className="salary-form">
+                    <div className="input-group">
+                        <label>Name</label>
+                        <input
+                            type="text"
+                            placeholder="Enter name"
+                            value={this.state.name}
+                            onChange={(event) => this.handleChangeName(event)}
+                        />
+                    </div>
 
-                    <label htmlFor="salary">Salary</label>
-                    <input
-                        type="text"
-                        placeholder="Salary"
-                        value={this.state.salary}
-                        onChange={(event) => this.handleChangeSalary(event)}
-                    />
+                    <div className="input-group">
+                        <label>Salary</label>
+                        <input
+                            type="number"
+                            placeholder="Enter salary"
+                            value={this.state.salary}
+                            onChange={(event) => this.handleChangeSalary(event)}
+                        />
+                    </div>
 
-                    <button type="submit"
+                    <button
+                        type="submit"
                         className="btn-submit"
-                        onClick={(event) => this.handleSubmit(event)} >Submit</button>
+                        onClick={(event) => this.handleSubmit(event)}
+                    >Submit</button>
                 </form>
             </div>
         )
