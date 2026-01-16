@@ -1,5 +1,6 @@
 import React from "react";
 import { toast } from 'react-toastify';
+import "./AddTodo.scss";
 
 
 class AddTodo extends React.Component {
@@ -38,6 +39,7 @@ class AddTodo extends React.Component {
             <div className='add-todo'>
                 <input type='text' value={title}
                     onChange={(event) => this.handleOnChangeTitle(event)}
+                    onKeyDown={(e) => e.key === 'Enter' && this.handleClickAddTodo()}
                 />
                 <button className='add'
                     onClick={() => this.handleClickAddTodo()}

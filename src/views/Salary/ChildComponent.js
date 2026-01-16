@@ -43,41 +43,44 @@ class ChildComponent extends React.Component {
 
         return (
             <>
-                {showpeople === false ?
-                    <div>
-                        <button className='btn-show'
-                            onClick={() => this.handleshowhide()}>
-                            Show
-                        </button>
-                    </div>
-                    :
-                    <>
-                        <div className='people-list'>
-                            {
-                                arraypeople.map((item, index) => {
-                                    if (item.salary >= 1000) {
-                                        return (
-
-                                            <div key={item.id}>
-                                                {item.name} - {item.salary}$ &nbsp;
-                                                <span onClick={() => this.handleDelete(item)}>X</span>
-                                            </div>
-                                        )
-
-                                    } else {
-                                        return (
-                                            <div></div> // This will render nothing if salary is less than 1000
-                                        )
-                                    }
-
-                                })
-                            }
-                        </div>
+                <div className='salary-list-container'>
+                    {showpeople === false ?
                         <div>
-                            <button onClick={() => this.handleshowhide()}>Hide</button>
+                            <button className='btn-show'
+                                onClick={() => this.handleshowhide()}>
+                                Show
+                            </button>
                         </div>
-                    </>
-                }
+                        :
+                        <>
+                            <div className='people-table'>
+                                {
+                                    arraypeople.map((item, index) => {
+                                        if (item.salary >= 1000) {
+                                            return (
+
+                                                <div className='table-row' key={item.id}>
+                                                    <span className="col-name">{item.name}</span> -
+                                                    <span className="col-salary">{item.salary}$</span>
+                                                    <button className="btn-delete" onClick={() => this.handleDelete(item)}>Delete</button>
+                                                </div>
+                                            )
+
+                                        } else {
+                                            return (
+                                                <div></div> // This will render nothing if salary is less than 1000
+                                            )
+                                        }
+
+                                    })
+                                }
+                            </div>
+                            <div>
+                                <button className='btn-show-hide' onClick={() => this.handleshowhide()}>Hide</button>
+                            </div>
+                        </>
+                    }
+                </div>
             </>
         );
 

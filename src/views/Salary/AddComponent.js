@@ -39,25 +39,27 @@ class AddComponent extends React.Component {
 
     render() {
         return (
+            <div className='add-salary-container'>
+                <form>
+                    <label htmlFor="name">Name:</label>
+                    <input
+                        type="text"
+                        value={this.state.name}
+                        onChange={(event) => this.handleChangeName(event)}
+                    />
 
-            <form>
-                <label htmlFor="name">Name:</label><br />
-                <input
-                    type="text"
-                    value={this.state.name}
-                    onChange={(event) => this.handleChangeName(event)}
-                /><br />
+                    <label htmlFor="salary">Salary:</label>
+                    <input
+                        type="text"
+                        value={this.state.salary}
+                        onChange={(event) => this.handleChangeSalary(event)}
+                    />
 
-                <label htmlFor="salary">Salary:</label><br />
-                <input
-                    type="text"
-                    value={this.state.salary}
-                    onChange={(event) => this.handleChangeSalary(event)}
-                /><br /><br />
-
-                <input type="submit"
-                    onClick={(event) => this.handleSubmit(event)} />
-            </form>
+                    <button type="submit"
+                        className="btn-submit"
+                        onClick={(event) => this.handleSubmit(event)} >Submit</button>
+                </form>
+            </div>
         )
 
     }

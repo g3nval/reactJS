@@ -24,7 +24,7 @@
       justify-content: space-between;
       align-items: center;
       transition: all 0.2s;
-      background: var(--white);
+      background: linear-gradient(45deg, #4e73df, #1bffff);
 
       &:hover {
         background-color: #f1f3f9;
@@ -46,6 +46,5 @@
   /* Loading text */
   div:not(.child) {
     font-style: italic;
-    color: var(--secondary-color);
   }
 }

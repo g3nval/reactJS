@@ -1,0 +1,104 @@
+/* Container chính bọc cả trang Salary */
+.salary-container {
+    background: #282c34; // Màu Dark theme
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 20px auto;
+    color: white;
+    text-align: center;
+
+    /* CSS cho phần Form nhập liệu */
+    .add-salary-container {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+
+            input {
+                width: 80%;
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                outline: none;
+            }
+
+            .btn-submit {
+                margin-top: 10px;
+                padding: 10px 25px;
+                border: 1px solid #1cc88a;
+                border-radius: 5px;
+                font-weight: bold;
+                cursor: pointer;
+                /* Gradient Xanh lá - Trắng */
+                background: linear-gradient(45deg, #1cc88a, #1bffff);
+                color: #13855c;
+                transition: 0.3s;
+
+                &:hover {
+                    transform: translateY(-2px);
+                    background: linear-gradient(45deg, #13855c, #1bffff);
+                }
+            }
+        }
+    }
+
+    /* CSS cho phần Bảng danh sách */
+    .people-table {
+        margin: 20px 0;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 8px;
+        overflow: hidden;
+
+        .table-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+
+            &:nth-child(even) {
+                background: rgba(255,255,255,0.05);
+            }
+
+            .col-name { flex: 2; text-align: left; font-weight: bold; }
+            .col-salary { flex: 1; color: #f6c23e; }
+
+            .btn-delete {
+                padding: 4px 12px;
+                border: 1px solid #e74a3b;
+                border-radius: 4px;
+                font-weight: bold;
+                cursor: pointer;
+                /* Gradient Đỏ - Trắng */
+                background: linear-gradient(45deg, #e74a3b, #ffffff);
+                color: #c0392b;
+
+                &:hover {
+                    background: linear-gradient(45deg, #c0392b, #ffffff);
+                }
+            }
+        }
+    }
+
+    /* Nút Show/Hide chung */
+    .btn-show-hide {
+        padding: 8px 20px;
+        border-radius: 20px;
+        border: 1px solid #4e73df;
+        font-weight: bold;
+        cursor: pointer;
+        /* Gradient Xanh dương - Trắng */
+        background: linear-gradient(45deg, #4e73df, #1bffff);
+        color: #2e59d9;
+        
+        &:hover {
+            filter: brightness(1.1);
+        }
+    }
+}

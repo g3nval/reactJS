@@ -1,6 +1,7 @@
 import React from 'react';
 import ChildComponent from './ChildComponent';
 import AddComponent from './AddComponent';
+import "./Salary.scss"
 
 class Salary extends React.Component {
 
@@ -41,14 +42,16 @@ class Salary extends React.Component {
         console.log('>>>call render: ', this.state);
         return (
             <>
-                <AddComponent
-                    addnewPerson={this.addnewPerson}
-                />
+                <div className="salary-container">
+                    <AddComponent
+                        addnewPerson={this.addnewPerson}
+                    />
 
-                <ChildComponent
-                    arraypeople={this.state.arraypeople}
-                    deletePerson={this.deletePerson}
-                />
+                    <ChildComponent
+                        arraypeople={this.state.arraypeople}
+                        deletePerson={this.deletePerson}
+                    />
+                </div>
             </>
         );
 

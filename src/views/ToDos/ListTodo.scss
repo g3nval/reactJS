@@ -1,85 +1,71 @@
-.list-todo-container {
-  background: var(--white);
+/* Phải viết đúng ListToDo-container (chữ T và D viết hoa giống trong JS) */
+.ListToDo-container {
+  background: #282c34;
   padding: 30px;
-  border-radius: 10px;
-  box-shadow: var(--shadow-md);
-  max-width: 600px;
-  margin: 20px auto; /* Căn giữa trang */
+  border-radius: 15px;
+  max-width: 700px;
+  margin: 20px auto;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 
-  p {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: var(--primary-color);
-  }
-
-  .add-todo {
+  /* Cấu trúc theo list-todo-content trong file JS của bạn */
+  .list-todo-content {
     display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
+    flex-direction: column;
+    margin-top: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    overflow: hidden;
 
-    input {
-      flex-grow: 1;
-      padding: 10px 15px;
-      border: 2px solid #ddd;
-      border-radius: 5px;
-      outline: none;
-      transition: border-color 0.3s;
-
-      &:focus {
-        border-color: var(--primary-color);
-      }
-    }
-
-    .add {
-      background-color: var(--primary-color);
-      color: white;
-      min-width: 80px;
-      
-      &:hover {
-        background-color: #2e59d9;
-      }
-    }
-  }
-
-  .todo-content {
     .todo-child {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px;
-      border-bottom: 1px solid #eee;
-      
-      &:last-child {
-        border-bottom: none;
+      padding: 15px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.02);
+
+      &:nth-child(even) {
+        background: rgba(255,255,255,0.05);
       }
 
       span {
+        flex: 1; /* Đẩy các nút bấm về bên phải */
+        text-align: left;
         font-size: 16px;
+        
+        input {
+          padding: 5px 10px;
+          border-radius: 4px;
+          border: none;
+          width: 80%;
+        }
       }
 
-
-      /* Các nút hành động */
+      /* Các nút bấm với hiệu ứng Linear Gradient */
       button {
         margin-left: 10px;
-        padding: 10px 20px;
-        font-size: 12px;
-      }
+        padding: 8px 20px;
+        border-radius: 5px;
+        border: 1px solid #4e73df;
+        font-weight: bold;
+        cursor: pointer;
+        
+        // Gradient Xanh dương - Trắng
+        background: linear-gradient(45deg, #4e73df, #1bffff);
+        color: #2e59d9;
+        transition: all 0.2s;
 
-      .edit {
-        background-color: var(--warning-color);
-        color: #fff;
-      
-      }
+        &:hover {
+          transform: scale(1.05);
+          background: linear-gradient(45deg, #2e59d9, #1bffff);
+        }
 
-      .delete {
-        background-color: var(--danger-color);
-        color: #fff;
-      }
-      
-      .save {
-         background-color: var(--success-color);
-         color: #fff;
+        &.delete {
+          border-color: #e74a3b;
+          background: linear-gradient(45deg, #e74a3b, #ffffff);
+          color: #c0392b;
+        }
       }
     }
   }

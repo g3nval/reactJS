@@ -1,0 +1,57 @@
+/* Dán đoạn này vào bên trong .ListToDo-container { ... } */
+
+.add-todo {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Khoảng cách giữa ô nhập và nút Add */
+  margin-bottom: 30px; /* Đẩy danh sách bên dưới ra xa một chút */
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05); /* Nền mờ nhẹ để tách biệt khu vực thêm mới */
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  input {
+    flex: 1; /* Input tự động giãn dài ra hết cỡ */
+    height: 40px;
+    padding: 0 15px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+
+    /* Hiệu ứng khi click vào ô nhập */
+    &:focus {
+      border-color: #4e73df;
+      box-shadow: 0 0 0 4px rgba(78, 115, 223, 0.2);
+    }
+  }
+
+  .add {
+    height: 40px;
+    min-width: 100px; /* Đảm bảo nút không bị co nhỏ quá */
+    padding: 0 20px;
+    border-radius: 5px;
+    border: 1px solid #4e73df;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    
+    /* Gradient Xanh Dương -> Trắng (Đồng bộ với nút Edit/Delete bên dưới) */
+    background: linear-gradient(180deg, #4e73df 0%, #ffffff 200%);
+    color: #2e59d9; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px); /* Nút nảy lên nhẹ khi di chuột vào */
+      box-shadow: 0 5px 15px rgba(78, 115, 223, 0.3);
+      /* Đậm màu hơn khi hover */
+      background: linear-gradient(180deg, #2e59d9 0%, #ffffff 150%);
+    }
+
+    &:active {
+      transform: scale(0.98); /* Hiệu ứng nhấn xuống */
+    }
+  }
+}
