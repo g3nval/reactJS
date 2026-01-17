@@ -1,43 +1,29 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-
-// This component demonstrates how to handle form input in React.
 class ChildComponent extends React.Component {
-
 
     state = {
         showpeople: false,
     }
-    handleChangefirstName = (event) => {
-        this.setState({
-            firstName: event.target.value
-        })
-    }
 
 
-    handleChangelastName = (event) => {
-        this.setState({
-            lastName: event.target.value
-        })
+    handleViewDetail = (user) => {
+        this.props.history.push(`/user/${user.id}`);
     }
-    handleSubmit = (event) => {
-        console.log('>>>call handleSubmit: ', this.state);
-        // Here you can handle the form submission, e.g., send data to a server
-        event.preventDefault(); // Prevent the default form submission behavior
-    }
+
     handleshowhide = () => {
         this.setState({
             showpeople: !this.state.showpeople
         })
     }
 
-    handleDelete = (id) => {
-        console.log('>>>check delete id: ', id);
-        this.props.deletePerson(id);
+    handleDelete = (event, person) => {
+        event.stopPropagation();
+        this.props.deletePerson(person);
     }
 
     render() {
-
         let { arraypeople } = this.props;
         let { showpeople } = this.state;
 
@@ -48,7 +34,7 @@ class ChildComponent extends React.Component {
                         <div>
                             <button className='btn-show-hide'
                                 onClick={() => this.handleshowhide()}>
-                                Show
+                                Show List
                             </button>
                         </div>
                         :
@@ -58,35 +44,37 @@ class ChildComponent extends React.Component {
                                     arraypeople.map((item, index) => {
                                         if (item.salary >= 1000) {
                                             return (
-
-                                                <div className='table-row' key={item.id}>
-                                                    <span className="col-name">{item.name}</span> -
+                                                <div
+                                                    className='table-row'
+                                                    key={item.id}
+                                                    onClick={() => this.handleViewDetail(item)}
+                                                >
+                                                    <span className="col-name">{item.name}</span>
                                                     <span className="col-salary">{item.salary}$</span>
-                                                    <button className="btn-delete" onClick={() => this.handleDelete(item)}>Delete</button>
+                                                    <button
+                                                        className="btn-delete"
+                                                        // Truyền event để chặn stopPropagation
+                                                        onClick={(event) => this.handleDelete(event, item)}
+                                                    >
+                                                        Delete
+                                                    </button>
                                                 </div>
                                             )
-
-                                        } else {
-                                            return (
-                                                <div></div> // This will render nothing if salary is less than 1000
-                                            )
                                         }
-
+                                        return null;
                                     })
                                 }
                             </div>
                             <div>
-                                <button className='btn-show-hide' onClick={() => this.handleshowhide()}>Hide</button>
+                                <button className='btn-show-hide' onClick={() => this.handleshowhide()}>Hide List</button>
                             </div>
                         </>
                     }
                 </div>
             </>
         );
-
     }
 }
 
 
-
-export default ChildComponent;
+export default withRouter(ChildComponent);

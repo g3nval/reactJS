@@ -39,7 +39,7 @@ class ListUser extends React.Component {
                                         <div className="user-index">{index + 1}</div>
                                         <div className="user-avatar">
                                             <img src={item.avatar} alt="avatar"
-                                                onError={(e) => { e.target.src = 'https://via.placeholder.com/50' }}
+                                                onError={(e) => { e.target.src = 'https://i.pravatar.cc/150?img=13' }}
                                             />
                                         </div>
                                         <div className="user-info">
@@ -47,7 +47,7 @@ class ListUser extends React.Component {
                                             <div className="email">{item.email}</div>
                                         </div>
                                         <div className="view-btn">
-                                            <span>Xem chi tiết</span>
+                                            <span>View detail</span>
                                         </div>
                                     </div>
                                 )

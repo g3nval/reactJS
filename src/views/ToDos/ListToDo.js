@@ -7,9 +7,9 @@ class ListToDo extends React.Component {
 
     state = {
         listTodos: [
-            { id: 'todo1', title: 'Do Homework ' },
-            { id: 'todo2', title: 'Play Games ' },
-            { id: 'todo3', title: 'Watch Movies ' },
+            { id: 'todo1', title: 'Operations and Production ' },
+            { id: 'todo2', title: 'Marketing and Sales ' },
+            { id: 'todo3', title: 'Administration and Finance ' },
         ],
         editTodo: {}
     }
@@ -80,7 +80,7 @@ class ListToDo extends React.Component {
 
                 <div className='ListToDo-container'>
                     <h2>
-                        Simple React App with To-Do List &amp; Quan
+                        Simple React App with To-Do List
                     </h2>
                     <AddTodo
                         addNewTodo={this.addNewTodo}

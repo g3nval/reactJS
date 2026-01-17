@@ -40,18 +40,19 @@ class Salary extends React.Component {
 
     render() {
         console.log('>>>call render: ', this.state);
+        let { listUsers, addNewSalaryUser, deleteSalaryUser } = this.props;
         return (
             <>
                 <div className="salary-container">
                     <h2 className="salary-title">Salary Management</h2>
                     <div className="salary-body">
                         <AddComponent
-                            addnewPerson={this.addnewPerson}
+                            addNewSalaryUser={addNewSalaryUser}
                         />
 
                         <ChildComponent
-                            arraypeople={this.state.arraypeople}
-                            deletePerson={this.deletePerson}
+                            arraypeople={listUsers}
+                            deletePerson={deleteSalaryUser}
                         />
                     </div>
                 </div>
