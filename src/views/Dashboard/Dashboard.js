@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
                         <div className="card-trend up">+5% this month</div>
                     </div>
                     <div className="card">
-                        <div className="card-title">Monthly salary fundt</div>
+                        <div className="card-title">Monthly salary fund</div>
                         <div className="card-value">$45,000</div>
                         <div className="card-trend down">-2% compared to May</div>
                     </div>

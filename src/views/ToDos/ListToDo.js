@@ -7,19 +7,17 @@ class ListToDo extends React.Component {
 
     state = {
         listTodos: [
-            { id: 'todo1', title: 'Operations and Production ' },
-            { id: 'todo2', title: 'Marketing and Sales ' },
-            { id: 'todo3', title: 'Administration and Finance ' },
+            { id: 'todo1', title: 'Financial Report Q3', department: 'Finance', deadline: '2026-06-30' },
+            { id: 'todo2', title: 'Fix API Error', department: 'IT', deadline: '2026-06-25' },
+            { id: 'todo3', title: 'Hiring React Dev', department: 'HR', deadline: '2026-07-01' },
         ],
         editTodo: {}
     }
-
 
     addNewTodo = (todo) => {
         this.setState({
             listTodos: [...this.state.listTodos, todo]
         })
-
         toast.success("Add successfully!")
     }
 
@@ -30,37 +28,32 @@ class ListToDo extends React.Component {
             listTodos: currentTodos
         })
         toast.success("Delete successfully!")
-
     }
 
     handleEditTodo = (todo) => {
         let { editTodo, listTodos } = this.state;
-
         let isEmptyObj = Object.keys(editTodo).length === 0;
 
-        //save
+        // Logic Save
         if (isEmptyObj === false && editTodo.id === todo.id) {
-
             let listTodosCopy = [...listTodos];
-
             let objIndex = listTodosCopy.findIndex((item => item.id === todo.id));
 
+            // Chỉ update title, giữ nguyên department và deadline cũ
             listTodosCopy[objIndex].title = editTodo.title;
 
             this.setState({
                 listTodos: listTodosCopy,
                 editTodo: {}
-
             })
             toast.success("Update successfully!")
             return;
         }
 
-        //edit
+        // Logic Edit
         this.setState({
             editTodo: todo
         })
-
     }
 
     handleOnChangeEditTodo = (event) => {
@@ -70,73 +63,80 @@ class ListToDo extends React.Component {
             editTodo: editTodoCopy
         })
     }
+
     render() {
         let { listTodos, editTodo } = this.state;
-        //let listTodos = this.state.listTodos;
         let isEmptyObj = Object.keys(editTodo).length === 0;
-        console.log(">>>check empty object; ", isEmptyObj);
+
         return (
-            <>
+            <div className='ListToDo-container'>
+                <h2>Simple React App with Department Tasks</h2>
 
-                <div className='ListToDo-container'>
-                    <h2>
-                        Simple React App with To-Do List
-                    </h2>
-                    <AddTodo
-                        addNewTodo={this.addNewTodo}
+                {/* Truyền hàm addNewTodo xuống con */}
+                <AddTodo addNewTodo={this.addNewTodo} />
 
-                    />
-                    <div className='list-todo-content'>
-                        {listTodos && listTodos.length > 0 &&
-                            listTodos.map((item, index) => {
-                                return (
-                                    <div className='todo-child' key={item.id}>
+                <div className='list-todo-content'>
+                    {listTodos && listTodos.length > 0 &&
+                        listTodos.map((item, index) => {
+                            return (
+                                <div className='todo-child' key={item.id}>
+                                    <div className="todo-info">
                                         {isEmptyObj === true ?
-                                            <span> {index + 1} - {item.title}</span>
+                                            // VIEW MODE
+                                            <div className="view-mode">
+                                                <span className="index">{index + 1}.</span>
+                                                <div className="details">
+                                                    <span className="title">{item.title}</span>
+                                                    <div className="meta">
+                                                        {/* Hiển thị Badge phòng ban */}
+                                                        <span className={`badge ${item.department.toLowerCase()}`}>
+                                                            {item.department}
+                                                        </span>
+                                                        <span className="date">⏳ {item.deadline}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             :
+                                            //EDIT MODE
                                             <>
                                                 {editTodo.id === item.id ?
-                                                    <span>
-                                                        {index + 1} - <input value={editTodo.title}
+                                                    <div className="edit-mode">
+                                                        <span>{index + 1} - </span>
+                                                        <input
+                                                            value={editTodo.title}
                                                             onChange={(event) => this.handleOnChangeEditTodo(event)}
                                                         />
-                                                    </span>
+                                                    </div>
                                                     :
-                                                    <span>
-                                                        {index + 1} - {item.title}
-                                                    </span>
+                                                    // Nếu đang edit dòng khác thì dòng này vẫn hiển thị bình thường
+                                                    <div className="view-mode">
+                                                        <span className="index">{index + 1}.</span>
+                                                        <div className="details">
+                                                            <span className="title">{item.title}</span>
+                                                            <span className={`badge ${item.department.toLowerCase()}`}>{item.department}</span>
+                                                        </div>
+                                                    </div>
                                                 }
                                             </>
                                         }
-
-                                        <button className='edit'
-                                            onClick={() => this.handleEditTodo(item)}
-                                        >
-                                            {isEmptyObj === false && editTodo.id === item.id ?
-                                                "Save" : "Edit"
-                                            }
-
-                                        </button>
-                                        <button className='delete'
-                                            onClick={() => this.handleDeleteTodo(item)}
-
-                                        >Delete</button>
-
                                     </div>
-                                )
 
-                            })
-
-
-                        }
-
-
-                    </div>
+                                    <div className="todo-actions">
+                                        <button className='edit' onClick={() => this.handleEditTodo(item)}>
+                                            {isEmptyObj === false && editTodo.id === item.id ? "Save" : "Edit"}
+                                        </button>
+                                        <button className='delete' onClick={() => this.handleDeleteTodo(item)}>
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
-            </>
+            </div>
         )
     }
-
 }
 
 export default ListToDo;

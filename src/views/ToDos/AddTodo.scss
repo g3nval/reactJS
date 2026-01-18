@@ -1,78 +1,58 @@
-.add-todo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  
-  padding: 12px 0px 0px;
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px;
-
-  .input-wrapper {
-    flex: 1;
+.add-todo-container {
+    background: #282c34;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
     display: flex;
-    align-items: center;
-    background: #3a3b3c; 
-    border-radius: 10px; 
-    padding: 0 16px;
-    height: 40px;
-    transition: background 0.2s ease;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 
-    &:hover {
-      background: #4e4f50; 
+    .form-row {
+        display: flex;
+        gap: 15px;
+        align-items: flex-end;
+        
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            label {
+                font-size: 12px;
+                color: #b0b3b8;
+                margin-bottom: 5px;
+                text-align: left;
+            }
+
+            input, select {
+                padding: 10px;
+                border-radius: 4px;
+                border: 1px solid #555;
+                background-color: #242526;
+                color: white;
+                outline: none;
+                
+                &:focus {
+                    border-color: #2374e1;
+                }
+            }
+        }
     }
 
-    input {
-      width: 100%;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #e4e6eb; 
-      font-size: 15px;
-      line-height: 40px;
+    .btn-add {
+        align-self: flex-end;
+        padding: 10px 25px;
+        background-color: #2374e1;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
 
-      &::placeholder {
-        color: #b0b3b8; 
-      }
+        &:hover {
+            background-color: #1a65c9;
+        }
     }
-  }
-
-  .add {
-    background: #2374e1;
-    color: white;
-    border: none;
-    outline: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    transition: filter 0.2s, transform 0.1s;
-
-    &:hover {
-      transform: scale(1.05);
-      background: #0c55b5;
-      color: white;
-    }
-
-    &:active {
-      transform: scale(0.96); 
-    }
-
-    &:disabled {
-      background: #505151;
-      color: #8a8d91;
-      cursor: not-allowed;
-    }
-  }
-}
-
-
-@media (max-width: 480px) {
-  .add-todo {
-    padding: 10px;
-    .add {
-        padding: 8px 12px;
-    }
-  }
 }

@@ -17,6 +17,32 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
+        
+        .loader{
+        -webkit-perspective: 700px;
+        perspective: 700px;
+        padding: 10px 20px;
+        
+        span{
+            color:#1874d0;
+            font-weight: 400;
+            font-size: 2rem;
+            display: inline-block;
+            transform-origin: 0 70%;
+            transform-style: preserve-3d;
+            animation: flip 2.6s infinite linear;
+        }
+        
+        @keyframes flip{
+            35%{
+                transform: rotateZ(360deg);
+            }
+            100%{
+                transform: rotateZ(360deg);
+            }
+        }
+
+        }
 
         .user-card {
             display: flex;
@@ -238,7 +264,7 @@
             }
         }
         .training-section {
-    .kpi-header {
+        .kpi-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -302,7 +328,32 @@
             }
         }
     }
-}
+        }
+    }
+    .loader{
+        -webkit-perspective: 700px;
+        perspective: 700px;
+        padding: 10px 20px;
+        
+        span{
+            color:#1874d0;
+            font-weight: 400;
+            font-size: 2rem;
+            display: inline-block;
+            transform-origin: 0 70%;
+            transform-style: preserve-3d;
+            animation: flip 2.6s infinite linear;
+        }
+        
+        @keyframes flip{
+            35%{
+                transform: rotateZ(360deg);
+            }
+            100%{
+                transform: rotateZ(360deg);
+            }
+        }
+
     }
 }
 

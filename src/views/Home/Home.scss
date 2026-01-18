@@ -1,17 +1,184 @@
-.head{
-    font-family: "Noto Sans", sans-serif;
-    font-size: 400%;
-    font-weight: bold;
-    background-image: url(../../assets/images/wall.avif);
-    background-size: cover;
-    background-clip: text;
-    color: transparent;
-    animation: animate 20s linear infinite;
+// Biến màu sắc
+$bg-dark: #18191a;
+$bg-card: #242526;
+$text-primary: #e4e6eb;
+$text-secondary: #b0b3b8;
+$blue-brand: #2374e1;
 
+.home-container {
+    color: $text-primary;
+    background-color: $bg-dark;
+    overflow-x: hidden; 
+
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    
+    .grid-2-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+        @media (max-width: 992px) {
+             grid-template-columns: 1fr; 
+             text-align: center;
+        }
+    }
+
+
+    
+    .hero-section {
+        position: relative;
+        background-image: url('../../assets/images/hero-bg.png'); 
+        background-size: cover;     
+        background-position: center center; 
+        background-repeat: no-repeat;
+        height: 85vh; 
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+        text-align: center;
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6); 
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2; 
+            max-width: 800px;
+            padding: 20px;
+
+            h1 { 
+                font-size: 5rem; 
+                color: $blue-brand; 
+                margin-bottom: 10px;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            }
+            .tagline { 
+                font-size: 2rem; 
+                font-weight: bold; 
+                margin-bottom: 15px; 
+            }
+            .sub-tagline {
+                font-size: 1.2rem;
+                color: $text-secondary;
+                margin-bottom: 40px;
+            }
+            .btn-primary {
+                padding: 15px 40px;
+                font-size: 1.1rem;
+                background: $blue-brand;
+                color: white;
+                border: none;
+                border-radius: 30px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(35, 116, 225, 0.4);
+                &:hover { 
+                    background: lighten($blue-brand, 5%);
+                    transform: translateY(-3px);
+                }
+            }
+        }
+    }
+
+    
+    .info-section {
+        padding: 100px 0;
+        background: lighten($bg-dark, 2%);
+
+        .info-image-wrapper {
+            img {
+                width: 100%;
+                height: auto;
+                border-radius: 20px;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+                 
+                 transform: perspective(1000px) rotateY(5deg);
+                 transition: transform 0.5s;
+                 &:hover {
+                     transform: perspective(1000px) rotateY(0deg);
+                 }
+            }
+        }
+
+        .info-content-wrapper {
+             h2 { font-size: 2.5rem; margin-bottom: 25px; color: $blue-brand; }
+            .description { font-size: 1.1rem; line-height: 1.8; color: $text-secondary; margin-bottom: 30px; }
+            
+            .mission-box {
+                background: $bg-card;
+                padding: 30px;
+                border-radius: 15px;
+                border-left: 5px solid $blue-brand;
+                h3 { margin-top: 0; margin-bottom: 15px; }
+                p { margin: 0; line-height: 1.6; }
+            }
+        }
+    }
+    .features-section {
+        padding: 80px 10%;
+        text-align: center;
+        h2 { font-size: 2.5rem; margin-bottom: 50px; }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+        .feature-item {
+            background: #242526;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s;
+            &:hover { transform: translateY(-10px); }
+            .icon { font-size: 3rem; display: block; margin-bottom: 15px; }
+        }
+    }
 }
 
-@keyframes animate{
-    to{
-        background-position-x: -1000px;
+    .achievements-section {
+        padding: 30px;
+        display: flex;
+        justify-content: space-around;
+        background: #2374e1;
+        color: white;
+        text-align: center;
+        .number { display: block; font-size: 2.5rem; font-weight: bold; }
+        .label { font-size: 1rem; opacity: 0.9; }
+    }
+
+    .home-footer {
+        background: #242526;
+        padding: 40px 10%;
+        text-align: center;
+        border-top: 1px solid #3a3b3c;
+        .slogan { font-style: italic; color: #2374e1; margin-top: 20px; }
+    }
+    .animate-pop-in { animation: popIn 1s ease-out forwards; }
+    .animate-slide-in-left { animation: slideInLeft 1s ease-out forwards; opacity: 0; }
+    .animate-slide-in-right { animation: slideInRight 1s ease-out forwards; opacity: 0; }
+
+    @keyframes popIn {
+        0% { opacity: 0; transform: scale(0.8); }
+        100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes slideInLeft {
+        from { opacity: 0; transform: translateX(-50px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+        from { opacity: 0; transform: translateX(50px); }
+        to { opacity: 1; transform: translateX(0); }
     }
 }

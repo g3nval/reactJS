@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.scss';
 import Salary from './Salary/Salary';
 import ListToDo from './ToDos/ListToDo';
@@ -18,22 +18,24 @@ import {
 
 
 class App extends React.Component {
-  // 1. Khởi tạo dữ liệu tập trung tại đây
+
   state = {
     listUsersWithSalary: [
-      { id: '1', name: 'Jhon', salary: 1000, email: 'john@mail.com', avatar: 'https://i.pravatar.cc/150?u=1' },
-      { id: '2', name: 'Maria', salary: 2000, email: 'maria@mail.com', avatar: 'https://i.pravatar.cc/150?u=2' }
+      { id: '1', name: 'Jhon', salary: 1000, email: 'john@mail.com', avatar: 'https://i.imgur.com/LDOO4Qs.jpg' },
+      { id: '2', name: 'Maria', salary: 2000, email: 'maria@mail.com', avatar: 'https://i.imgur.com/DTfowdu.jpg' },
+      { id: '3', name: 'Admin', salary: 2500, email: 'admin@mail.com', avatar: 'https://i.imgur.com/yhW6Yw1.jpg' },
+      { id: '4', name: 'Maximus91', salary: 2000, email: 'Napoleon13@yahoo.com', avatar: 'https://i.pravatar.cc/150?img=13' }
     ]
   }
 
-  // 2. Hàm thêm nhân viên mới
+
   addNewSalaryUser = (user) => {
     this.setState({
       listUsersWithSalary: [...this.state.listUsersWithSalary, user]
     })
   }
 
-  // 3. Hàm xóa nhân viên
+
   deleteSalaryUser = (user) => {
     let currentList = this.state.listUsersWithSalary.filter(item => item.id !== user.id);
     this.setState({ listUsersWithSalary: currentList });
@@ -45,9 +47,6 @@ class App extends React.Component {
 
           <header className="App-header">
             <Nav />
-            <img src={logo} className="App-logo" alt="logo" />
-
-
 
             <Switch>
               <Route path="/" exact>

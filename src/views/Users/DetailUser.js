@@ -185,7 +185,15 @@ class DetailUser extends React.Component {
                         </div>
                     </div>
                 )}
-                {isEmptyObj === true && <div>User not found or loading...</div>}
+                {isEmptyObj === true && <div className="loader">
+                    <span>L</span>
+                    <span>O</span>
+                    <span>A</span>
+                    <span>D</span>
+                    <span>I</span>
+                    <span>N</span>
+                    <span>G</span>
+                </div>}
             </div>
         )
     }

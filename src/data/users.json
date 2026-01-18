@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "John",
+    "email": "john@mail.com",
+    "avatar": "/avatars/user1.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "Maria",
+    "email": "maria@mail.com",
+    "avatar": "/avatars/user2.jpeg"
+  },
+  {
+    "id": 3,
+    "name": "Admin",
+    "email": "admin@mail.com",
+    "avatar": "/avatars/user3.jpeg"
+  },
+  {
+    "id": 4,
+    "name": "Swara",
+    "email": "swara1@gmail.com",
+    "avatar": "/avatars/someone.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Swara",
+    "email": "swara2@gmail.com",
+    "avatar": "/avatars/someone.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Swara",
+    "email": "swara3@gmail.com",
+    "avatar": "/avatars/someone.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Swara",
+    "email": "swara4@gmail.com",
+    "avatar": "/avatars/someone.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Swara",
+    "email": "swara5@gmail.com",
+    "avatar": "/avatars/someone.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Swara",
+    "email": "swara6@gmail.com",
+    "avatar": "/avatars/someone.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Swara",
+    "email": "swara7@gmail.com",
+    "avatar": "/avatars/someone.jpg"
+  }
+]
