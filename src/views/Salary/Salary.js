@@ -1,65 +1,70 @@
 import React from 'react';
 import ChildComponent from './ChildComponent';
 import AddComponent from './AddComponent';
-import "./Salary.scss"
+import "./Salary.scss";
+import { connect } from 'react-redux';
+import { addSalaryUser, deleteSalaryUser } from '../../store/actions/salaryActions';
 
 class Salary extends React.Component {
 
 
-    state = {
-
-        arraypeople: [
-            { id: '1', name: 'Jhon', age: '30', salary: '1000' },
-            { id: '2', name: 'Maria', age: '25', salary: '2000' },
-            { id: '3', name: 'Admin', age: '20', salary: '3000' }
-
-        ]
-    }
-    addnewPerson = (person) => {
-        console.log('>>>check data from parent: ', person);
-        this.setState({
-            arraypeople: [...this.state.arraypeople, person]
-        });
-    }
-
-    deletePerson = (person) => {
-        let currentPerson = this.state.arraypeople;
-        currentPerson = currentPerson.filter(item => item.id !== person.id)
-        this.setState({
-            arraypeople: currentPerson
-        })
-    }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log(">> run didUpdate:", 'prevState: ', prevState, 'currentState: ', this.state);
-    }
 
-    componentDidMount() {
-        console.log('>>>call componentDidMount');
+        if (prevProps.listUsers !== this.props.listUsers) {
+            console.log(">> Salary Store Updated!", this.props.listUsers);
+        }
     }
 
     render() {
-        console.log('>>>call render: ', this.state);
-        let { listUsers, addNewSalaryUser, deleteSalaryUser } = this.props;
+        const { listUsers, addNewSalaryUser, deleteSalaryUser, currentUser, isLoggedIn } = this.props;
+        const isAdmin = isLoggedIn && currentUser && currentUser.role === 'Admin';
         return (
-            <>
-                <div className="salary-container">
+            <div className="salary-container">
+                <div className="salary-header">
                     <h2 className="salary-title">Salary Management</h2>
-                    <div className="salary-body">
-                        <AddComponent
-                            addNewSalaryUser={addNewSalaryUser}
-                        />
-
-                        <ChildComponent
-                            arraypeople={listUsers}
-                            deletePerson={deleteSalaryUser}
-                        />
-                    </div>
+                    {isLoggedIn && (
+                        <div className="user-role-badge">
+                            Logged in as: <span className={isAdmin ? "role-admin" : "role-staff"}>
+                                {currentUser.name} ({currentUser.role})
+                            </span>
+                        </div>
+                    )}
                 </div>
-            </>
+                <div className="salary-body">
+                    {isAdmin ? (
+                        <AddComponent addNewSalaryUser={addNewSalaryUser} />
+                    ) : (
+                        <div className="permission-info">
+                            * You don't have permission to add new salary records.
+                        </div>
+                    )}
+                    <ChildComponent
+                        arraypeople={listUsers}
+                        deletePerson={deleteSalaryUser}
+                        isAdmin={isAdmin}
+                    />
+                </div>
+            </div>
         );
-
     }
-
 }
-export default Salary;
+
+
+const mapStateToProps = (state) => {
+    return {
+        listUsers: state.salary || [],
+        currentUser: state.auth.currentUser,
+        isLoggedIn: state.auth.isLoggedIn
+    };
+};
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addNewSalaryUser: (person) => dispatch(addSalaryUser(person)),
+        deleteSalaryUser: (person) => dispatch(deleteSalaryUser(person))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Salary);

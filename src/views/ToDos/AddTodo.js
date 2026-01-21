@@ -9,7 +9,6 @@ class AddTodo extends React.Component {
         deadline: ''
     }
 
-
     departments = ["Operations", "Finance", "Marketing", "Sales", "IT", "HR"];
 
     handleOnChangeTitle = (event) => {
@@ -24,7 +23,11 @@ class AddTodo extends React.Component {
         this.setState({ deadline: event.target.value })
     }
 
-    handleClickAddTodo = () => {
+
+    handleSubmit = (event) => {
+
+        event.preventDefault();
+
         let { title, department, deadline } = this.state;
 
         // Validate dữ liệu: Phải nhập đủ cả 3
@@ -54,41 +57,46 @@ class AddTodo extends React.Component {
         let { title, department, deadline } = this.state;
         return (
             <div className='add-todo-container'>
-                <div className="form-row">
-                    <div className='input-group'>
-                        <label>Task Name:</label>
-                        <input type='text'
-                            placeholder="Enter task..."
-                            value={title}
-                            onChange={(event) => this.handleOnChangeTitle(event)}
-                            onKeyDown={(e) => e.key === 'Enter' && this.handleClickAddTodo()}
-                        />
-                    </div>
 
-                    <div className='input-group'>
-                        <label>Department:</label>
-                        <select
-                            value={department}
-                            onChange={(event) => this.handleOnChangeDepartment(event)}
-                        >
-                            {this.departments.map(item => (
-                                <option key={item} value={item}>{item}</option>
-                            ))}
-                        </select>
-                    </div>
+                <form onSubmit={(event) => this.handleSubmit(event)}>
+                    <div className="form-row">
+                        <div className='input-group'>
+                            <label>Task Name:</label>
+                            <input type='text'
+                                placeholder="Enter task..."
+                                value={title}
+                                onChange={(event) => this.handleOnChangeTitle(event)}
 
-                    <div className='input-group'>
-                        <label>Deadline:</label>
-                        <input type='date'
-                            value={deadline}
-                            onChange={(event) => this.handleOnChangeDeadline(event)}
-                        />
-                    </div>
-                </div>
+                            />
+                        </div>
 
-                <button className='btn-add' onClick={() => this.handleClickAddTodo()}>
-                    Add Task
-                </button>
+                        <div className='input-group'>
+                            <label>Department:</label>
+                            <select
+                                value={department}
+                                onChange={(event) => this.handleOnChangeDepartment(event)}
+                            >
+                                {this.departments.map(item => (
+                                    <option key={item} value={item}>{item}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className='input-group'>
+                            <label>Deadline:</label>
+                            <input type='date'
+                                value={deadline}
+                                onChange={(event) => this.handleOnChangeDeadline(event)}
+                            />
+                        </div>
+
+
+
+                        <button type="submit" className='btn-add'>
+                            Add Task
+                        </button>
+                    </div>
+                </form>
             </div>
         )
     }

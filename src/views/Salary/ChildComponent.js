@@ -51,13 +51,10 @@ class ChildComponent extends React.Component {
                                                 >
                                                     <span className="col-name">{item.name}</span>
                                                     <span className="col-salary">{item.salary}$</span>
-                                                    <button
-                                                        className="btn-delete"
-                                                        // Truyền event để chặn stopPropagation
-                                                        onClick={(event) => this.handleDelete(event, item)}
-                                                    >
-                                                        Delete
-                                                    </button>
+
+                                                    {this.props.isAdmin && (
+                                                        <span className='btn-delete' onClick={() => this.props.deletePerson(item)}>Delete</span>
+                                                    )}
                                                 </div>
                                             )
                                         }

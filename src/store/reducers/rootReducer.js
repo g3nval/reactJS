@@ -1,15 +1,14 @@
+import { combineReducers } from 'redux';
+import userReducer from './userReducer';
+import todoReducer from './todoReducer';
+import authReducer from './authReducer';
+import salaryReducer from './salaryReducer';
 
-const initState = {
-    users: [
-        { id: 1, name: 'quan' },
-        { id: 2, name: 'luog' }
-    ]
-}
-
-const rootReducer = (state = initState, action) => {
-
-    return state;
-
-}
+const rootReducer = combineReducers({
+    users: userReducer,
+    todos: todoReducer,
+    auth: authReducer,
+    salary: salaryReducer
+});
 
 export default rootReducer;
