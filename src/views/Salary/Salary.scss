@@ -1,209 +1,131 @@
-.salary-container {
-  background: #282c34;  
-  padding: 30px;
-  border-radius: 12px;
-  max-width: 1000px;
-  margin: 20px auto;
-  color: #e4e6eb;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+main.salary-container {
+    background: #282c34;  
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 1000px;
+    margin: 20px auto;
+    color: #e4e6eb;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 
-  .salary-title {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 24px;
-  }
+    header.salary-header {
+        text-align: center;
+        margin-bottom: 30px;
+        .salary-title { font-size: 24px; margin-bottom: 10px; }
+        .user-role-badge {
+            font-size: 14px;
+            .role-admin { color: #f7b928; font-weight: bold; }
+            .role-staff { color: #2374e1; }
+        }
+    }
 
-  .salary-body {
-    display: flex; /* Chia cột */
-    gap: 50px; /* Khoảng cách giữa 2 phần */
-    align-items: flex-start;
-  }
-
-  /* --- PHẦN BÊN TRÁI: INPUT --- */
-  .add-salary-container {
-    flex: 1; /* Chiếm 1 phần */
-    
-    .salary-form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-
-      .input-group {
+    section.salary-body {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start; 
-
-        label {
-          margin-bottom: 8px;
-          font-weight: 500;
-          color: #b0b3b8;
-          padding-left: 5px;
-        }
-
-        input {
-          width: 100%;
-          background: #3a3b3c; 
-          border: none;
-          outline: none;
-          padding: 12px 16px;
-          border-radius: 10px; 
-          color: white;
-          font-size: 15px;
-          box-sizing: border-box;
-          
-          &:hover {
-            background: #4e4f50; 
-          }
-
-          &:focus {
-            background: #4e4f50;
-          }
-
-          &::placeholder {
-            color: #8a8d91;
-          }
-        }
-      }
-
-      .btn-submit {
-        align-self: center; 
-        padding: 10px 30px;
-        border-radius: 8px;
-        border: none;
-        font-weight: bold;
-        cursor: pointer;
-        background: #2374e1; 
-        color: white;
-        transition: 0.2s;
-
-        &:hover {
-          filter: brightness(1.1);
-          transform: translateY(-2px);
-          background: #1057b3;
-        }
-      }
-    }
-  }
-
-
-  .salary-list-container {
-    flex: 1.5; /* Cho phần bảng rộng hơn một chút */
-    background: #242526;
-    padding: 20px;
-    border-radius: 8px;
-    min-height: 200px;
-
-    .people-table {
-      .table-row {       
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 15px;
-        border-bottom: 1px solid #3e4042;
-        transition: background 0.2s;
-        
-
-        &:hover {
-          background: rgba(255, 255, 255, 0.05);
-        }
-
-        .col-name { flex: 2; text-align: left; }
-        .col-salary { flex: 1; color: #45bd62; font-weight: bold; }
-
-
-        .btn-delete {
-          background: transparent;
-          color: #ffffff;
-          border: none;
-          cursor: pointer;
-
-          padding: 5px 10px;
-          
-          &:hover {
-            background: #ad0e0e;
-          }
-        }
-      }
+        gap: 50px;
+        align-items: flex-start;
     }
 
-    .btn-show-hide {
-      margin-top: 15px;
-      background: #1f80e1;
-      color: white;
-      border: none;
-      padding: 8px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      
-      &:hover {
-        background: #0e5dad;
-      }
-    }
-  }
-}
-
-/* Responsive cho màn hình nhỏ */
-@media (max-width: 768px) {
-  .salary-body {
-    flex-direction: column; /* Chuyển thành 1 cột trên điện thoại */
-  }
-}
-
-.add-salary-container {
-    .salary-form {
-        .input-row {
+    /* FORM NHẬP LIỆU */
+    section.add-salary-container {
+        flex: 1;
+        form.salary-form {
             display: flex;
-            gap: 15px; // Chia 2 ô input trên cùng 1 hàng
-            
+            flex-direction: column;
+            gap: 15px;
+
+            .input-row {
+                display: flex;
+                gap: 15px;
+                .input-group { flex: 1; }
+            }
+
             .input-group {
-                flex: 1;
+                display: flex;
+                flex-direction: column;
+                label {
+                    margin-bottom: 8px;
+                    font-size: 13px;
+                    font-weight: 600;
+                    color: #b0b3b8;
+                    padding-left: 5px;
+                }
+                input {
+                    width: 100%;
+                    background: #3a3b3c;
+                    border: 1px solid transparent;
+                    padding: 10px 16px;
+                    border-radius: 20px;
+                    color: white;
+                    outline: none;
+                    transition: border 0.2s;
+                    &:focus {
+                        border: 1px solid #2374e1;
+                        background: #4e4f50;
+                    }
+                }
+            }
+
+            .btn-submit {
+                width: 100%;
+                padding: 12px;
+                border-radius: 8px;
+                background: #2374e1;
+                color: white;
+                font-weight: bold;
+                border: none;
+                cursor: pointer;
+                margin-top: 10px;
+                transition: filter 0.2s;
+                &:hover { filter: brightness(1.2); }
             }
         }
+    }
 
-        .input-group {
-            margin-bottom: 15px;
-            
-            label {
-                display: block;
-                color: #b0b3b8;
-                font-size: 13px;
-                font-weight: 600;
-                margin-bottom: 8px;
-                padding-left: 5px;
-            }
+    section.salary-list-container {
+        flex: 1.5;
+        background: #242526;
+        padding: 20px;
+        border-radius: 8px;
+        min-height: 200px;
 
-            input {
-                width: 100%;
-                background: #3a3b3c;
-                border: 1px solid transparent;
-                border-radius: 20px; // Pill-shape chuẩn Facebook
-                padding: 10px 16px;
-                color: white;
-                outline: none;
-                transition: border 0.2s;
+        .people-table {
+            article.table-row {      
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 15px;
+                border-bottom: 1px solid #3e4042;
+                transition: background 0.2s;
+                cursor: pointer;
 
-                &:focus {
-                    border: 1px solid #2374e1;
-                    background: #4e4f50;
+                &:hover { background: rgba(255, 255, 255, 0.05); }
+                .col-name { flex: 2; text-align: left; margin: 0; font-size: 16px; }
+                .col-salary { flex: 1; color: #45bd62; font-weight: bold; margin: 0; }
+                .btn-delete {
+                    background: transparent;
+                    color: #ffffff;
+                    border: none;
+                    cursor: pointer;
+                    padding: 5px 10px;
+                    &:hover { background: #ad0e0e; border-radius: 4px; }
                 }
             }
         }
 
-        .btn-submit {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            background: #2374e1;
+        .btn-show-hide {
+            margin-top: 15px;
+            background: #1f80e1;
             color: white;
-            font-weight: bold;
             border: none;
+            padding: 8px 20px;
+            border-radius: 6px;
             cursor: pointer;
-            margin-top: 10px;
-            transition: filter 0.2s;
-
-            &:hover {
-                filter: brightness(1.2);
-            }
+            &:hover { background: #0e5dad; }
         }
+    }
+}
+
+@media (max-width: 768px) {
+    main.salary-container {
+        section.salary-body { flex-direction: column; }
     }
 }

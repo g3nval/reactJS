@@ -1,25 +1,27 @@
-.dashboard-container {
+main.dashboard-container {
     padding: 30px;
     background: transparent;
     min-height: 100vh;
     color: #e4e6eb;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 
-    .page-title { margin-bottom: 25px; }
+    header {
+        .page-title { margin-bottom: 25px; }
+    }
 
-    .stats-cards {
+    section.stats-cards {
         display: flex;
         gap: 20px;
         margin-bottom: 30px;
 
-        .card {
+        article.card {
             flex: 1;
             background: #242526;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 
-            .card-title { font-size: 14px; color: #b0b3b8; }
+            .card-title { font-size: 14px; color: #b0b3b8; display: block; margin-bottom: 5px; }
             .card-value { font-size: 28px; font-weight: bold; margin: 10px 0; color: white; }
             .card-trend { 
                 font-size: 13px;
@@ -30,20 +32,23 @@
         }
     }
 
-    .charts-container {
+    section.charts-container {
         display: flex;
         gap: 20px;
         
-        .chart-box {           
+        article.chart-box {           
             flex: 1;
             background: #242526;
             padding: 20px;
             border-radius: 10px;
-            h3 { margin-bottom: 20px; font-size: 18px; }
+            h3 { margin-bottom: 20px; font-size: 18px; color: #e4e6eb; }
         }
     }
 }
-// Responsive
+
+
 @media (max-width: 768px) {
-    .stats-cards, .charts-container { flex-direction: column; }
+    main.dashboard-container {
+        section.stats-cards, section.charts-container { flex-direction: column; }
+    }
 }

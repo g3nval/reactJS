@@ -10,14 +10,12 @@ $blue-brand: #2374e1;
     background-color: $bg-dark;
     overflow-x: hidden; 
 
-    
     .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
     }
 
-    
     .grid-2-col {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -29,8 +27,6 @@ $blue-brand: #2374e1;
         }
     }
 
-
-    
     .hero-section {
         position: relative;
         background-image: url('../../assets/images/hero-bg.png'); 
@@ -61,6 +57,7 @@ $blue-brand: #2374e1;
                 color: $blue-brand; 
                 margin-bottom: 10px;
                 text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+                margin-top: 0;
             }
             .tagline { 
                 font-size: 2rem; 
@@ -91,7 +88,6 @@ $blue-brand: #2374e1;
         }
     }
 
-    
     .info-section {
         padding: 100px 0;
         background: lighten($bg-dark, 2%);
@@ -102,17 +98,16 @@ $blue-brand: #2374e1;
                 height: auto;
                 border-radius: 20px;
                 box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-                 
-                 transform: perspective(1000px) rotateY(5deg);
-                 transition: transform 0.5s;
-                 &:hover {
-                     transform: perspective(1000px) rotateY(0deg);
-                 }
+                transform: perspective(1000px) rotateY(5deg);
+                transition: transform 0.5s;
+                &:hover {
+                    transform: perspective(1000px) rotateY(0deg);
+                }
             }
         }
 
         .info-content-wrapper {
-             h2 { font-size: 2.5rem; margin-bottom: 25px; color: $blue-brand; }
+            h2 { font-size: 2.5rem; margin-bottom: 25px; color: $blue-brand; }
             .description { font-size: 1.1rem; line-height: 1.8; color: $text-secondary; margin-bottom: 30px; }
             
             .mission-box {
@@ -125,27 +120,28 @@ $blue-brand: #2374e1;
             }
         }
     }
+
     .features-section {
         padding: 80px 10%;
         text-align: center;
         h2 { font-size: 2.5rem; margin-bottom: 50px; }
 
-    .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin-top: 30px;
-        .feature-item {
-            background: #242526;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.3s;
-            &:hover { transform: translateY(-10px); }
-            .icon { font-size: 3rem; display: block; margin-bottom: 15px; }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            .feature-item {
+                background: #242526;
+                padding: 25px;
+                border-radius: 12px;
+                text-align: center;
+                transition: transform 0.3s;
+                &:hover { transform: translateY(-10px); }
+                .icon { font-size: 3rem; display: block; margin-bottom: 15px; }
+            }
         }
     }
-}
 
     .achievements-section {
         padding: 30px;
@@ -163,8 +159,16 @@ $blue-brand: #2374e1;
         padding: 40px 10%;
         text-align: center;
         border-top: 1px solid #3a3b3c;
+        
+        // Reset lại font style 
+        .contact-info {
+            font-style: normal;
+        }
+        
         .slogan { font-style: italic; color: #2374e1; margin-top: 20px; }
     }
+
+    
     .animate-pop-in { animation: popIn 1s ease-out forwards; }
     .animate-slide-in-left { animation: slideInLeft 1s ease-out forwards; opacity: 0; }
     .animate-slide-in-right { animation: slideInRight 1s ease-out forwards; opacity: 0; }

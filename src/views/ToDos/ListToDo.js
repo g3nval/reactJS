@@ -1,106 +1,91 @@
-import React from "react";
-import "./ListTodo.scss";
-import AddTodo from "./AddTodo";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { addTodo, deleteTodo, updateTodo } from '../../store/slices/todoSlice';
 import { toast } from 'react-toastify';
-import { connect } from 'react-redux';
-import { addTodo, deleteTodo, updateTodo } from '../../store/actions/todoActions';
+import AddTodo from "./AddTodo";
+import "./ListTodo.scss";
 
-class ListToDo extends React.Component {
-    state = {
-        editTodo: {}
-    }
+const ListToDo = () => {
+    const listTodos = useSelector(state => state.todos);
+    const dispatch = useDispatch();
+    const [editTodo, setEditTodo] = useState({});
 
-    handleDeleteTodo = (todo) => {
-        this.props.dispatchDeleteTodo(todo);
+    const handleDeleteTodo = (todo) => {
+        dispatch(deleteTodo(todo));
         toast.error("Deleted successfully!");
-    }
+    };
 
-    handleEditTodo = (todo) => {
-        let { editTodo } = this.state;
-        let isEmptyObj = Object.keys(editTodo).length === 0;
+    const handleEditTodo = (todo) => {
+        const isEmptyObj = Object.keys(editTodo).length === 0;
 
         // Logic Save
-        if (isEmptyObj === false && editTodo.id === todo.id) {
-            this.props.dispatchUpdateTodo(editTodo); // Gửi object đã sửa lên Redux
-            this.setState({ editTodo: {} });
+        if (!isEmptyObj && editTodo.id === todo.id) {
+            dispatch(updateTodo(editTodo));
+            setEditTodo({});
             toast.success("Updated successfully!");
             return;
         }
 
         // Logic Edit
-        this.setState({ editTodo: todo });
-    }
+        setEditTodo(todo);
+    };
 
-    handleOnChangeEditTodo = (event) => {
-        let editTodoCopy = { ...this.state.editTodo };
-        editTodoCopy.title = event.target.value;
-        this.setState({ editTodo: editTodoCopy });
-    }
+    const handleOnChangeEditTodo = (event) => {
+        setEditTodo({ ...editTodo, title: event.target.value });
+    };
 
-    render() {
-        let { listTodos } = this.props;
-        let { editTodo } = this.state;
-        let isEmptyObj = Object.keys(editTodo).length === 0;
+    const isEmptyObj = Object.keys(editTodo).length === 0;
 
-        return (
-            <div className='ListToDo-container'>
-                <h2>Task Management System</h2>
-                <AddTodo addNewTodo={(todo) => this.props.dispatchAddTodo(todo)} />
+    return (
+        <section className='ListToDo-container' aria-labelledby="todo-heading">
+            <header>
+                <h2 id="todo-heading">Task Management System</h2>
+            </header>
 
-                <div className='list-todo-content'>
-                    {listTodos && listTodos.length > 0 &&
-                        listTodos.map((item, index) => (
-                            <div className='todo-child' key={item.id}>
-                                <div className="todo-info">
-                                    {isEmptyObj === false && editTodo.id === item.id ? (
-                                        <div className="edit-mode">
-                                            <span>{index + 1} - </span>
-                                            <input
-                                                value={editTodo.title}
-                                                onChange={(event) => this.handleOnChangeEditTodo(event)}
-                                            />
-                                        </div>
-                                    ) : (
-                                        <div className="view-mode">
-                                            <span className="index">{index + 1}.</span>
-                                            <div className="details">
-                                                <span className="title">{item.title}</span>
-                                                <div className="meta">
-                                                    <span className={`badge ${item.department.toLowerCase()}`}>
-                                                        {item.department}
-                                                    </span>
-                                                    <span className="date">⏳ {item.deadline}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
+            <AddTodo addNewTodo={(todo) => dispatch(addTodo(todo))} />
+
+            <div className='list-todo-content' role="list">
+                {listTodos && listTodos.length > 0 && listTodos.map((item, index) => (
+                    <article className='todo-child' key={item.id} role="listitem">
+                        <div className="todo-info">
+                            {!isEmptyObj && editTodo.id === item.id ? (
+                                <div className="edit-mode">
+                                    <span>{index + 1} - </span>
+                                    <input
+                                        value={editTodo.title}
+                                        onChange={handleOnChangeEditTodo}
+                                        aria-label="Edit task title"
+                                    />
                                 </div>
-
-                                <div className="todo-actions">
-                                    <button className='edit' onClick={() => this.handleEditTodo(item)}>
-                                        {isEmptyObj === false && editTodo.id === item.id ? "Save" : "Edit"}
-                                    </button>
-                                    <button className='delete' onClick={() => this.handleDeleteTodo(item)}>
-                                        Delete
-                                    </button>
+                            ) : (
+                                <div className="view-mode">
+                                    <span className="index">{index + 1}.</span>
+                                    <div className="details">
+                                        <h3 className="title">{item.title}</h3>
+                                        <div className="meta">
+                                            <span className={`badge ${item.department.toLowerCase()}`}>
+                                                {item.department}
+                                            </span>
+                                            <span className="date">⏳ {item.deadline}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))
-                    }
-                </div>
+                            )}
+                        </div>
+
+                        <div className="todo-actions">
+                            <button className='edit' onClick={() => handleEditTodo(item)}>
+                                {!isEmptyObj && editTodo.id === item.id ? "Save" : "Edit"}
+                            </button>
+                            <button className='delete' onClick={() => handleDeleteTodo(item)}>
+                                Delete
+                            </button>
+                        </div>
+                    </article>
+                ))}
             </div>
-        );
-    }
-}
+        </section>
+    );
+};
 
-const mapStateToProps = (state) => ({
-    listTodos: state.todos
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    dispatchAddTodo: (todo) => dispatch(addTodo(todo)),
-    dispatchDeleteTodo: (todo) => dispatch(deleteTodo(todo)),
-    dispatchUpdateTodo: (todo) => dispatch(updateTodo(todo))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListToDo);
+export default ListToDo;

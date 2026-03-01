@@ -1,77 +1,66 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-class ChildComponent extends React.Component {
+const ChildComponent = ({ arraypeople, deletePerson, isAdmin }) => {
+    const [showPeople, setShowPeople] = useState(false);
+    const history = useHistory();
 
-    state = {
-        showpeople: false,
-    }
+    const handleViewDetail = (user) => {
+        history.push(`/user/${user.id}`);
+    };
 
+    const handleDelete = (e, person) => {
+        e.stopPropagation();
+        deletePerson(person);
+    };
 
-    handleViewDetail = (user) => {
-        this.props.history.push(`/user/${user.id}`);
-    }
-
-    handleshowhide = () => {
-        this.setState({
-            showpeople: !this.state.showpeople
-        })
-    }
-
-    handleDelete = (event, person) => {
-        event.stopPropagation();
-        this.props.deletePerson(person);
-    }
-
-    render() {
-        let { arraypeople } = this.props;
-        let { showpeople } = this.state;
-
-        return (
-            <>
-                <div className='salary-list-container'>
-                    {showpeople === false ?
-                        <div>
-                            <button className='btn-show-hide'
-                                onClick={() => this.handleshowhide()}>
-                                Show List
-                            </button>
-                        </div>
-                        :
-                        <>
-                            <div className='people-table'>
-                                {
-                                    arraypeople.map((item, index) => {
-                                        if (item.salary >= 1000) {
-                                            return (
-                                                <div
-                                                    className='table-row'
-                                                    key={item.id}
-                                                    onClick={() => this.handleViewDetail(item)}
-                                                >
-                                                    <span className="col-name">{item.name}</span>
-                                                    <span className="col-salary">{item.salary}$</span>
-
-                                                    {this.props.isAdmin && (
-                                                        <span className='btn-delete' onClick={() => this.props.deletePerson(item)}>Delete</span>
-                                                    )}
-                                                </div>
-                                            )
-                                        }
-                                        return null;
-                                    })
-                                }
-                            </div>
-                            <div>
-                                <button className='btn-show-hide' onClick={() => this.handleshowhide()}>Hide List</button>
-                            </div>
-                        </>
-                    }
+    return (
+        <section className='salary-list-container' aria-label="Salary List">
+            {!showPeople ? (
+                <div className="toggle-action">
+                    <button className='btn-show-hide' onClick={() => setShowPeople(true)}>
+                        Show List
+                    </button>
                 </div>
-            </>
-        );
-    }
-}
+            ) : (
+                <>
+                    <div className='people-table' role="list">
+                        {arraypeople.map((item) => {
+                            if (item.salary >= 1000) {
+                                return (
+                                    <article
+                                        className='table-row'
+                                        key={item.id}
+                                        onClick={() => handleViewDetail(item)}
+                                        role="listitem"
+                                    >
+                                        <h3 className="col-name">{item.name}</h3>
+                                        <p className="col-salary">{item.salary}$</p>
 
+                                        {isAdmin && (
+                                            <button
+                                                className='btn-delete'
+                                                onClick={(e) => handleDelete(e, item)}
+                                                aria-label={`Delete ${item.name}`}
+                                            >
+                                                Delete
+                                            </button>
+                                        )}
+                                    </article>
+                                );
+                            }
+                            return null;
+                        })}
+                    </div>
+                    <div className="toggle-action">
+                        <button className='btn-show-hide' onClick={() => setShowPeople(false)}>
+                            Hide List
+                        </button>
+                    </div>
+                </>
+            )}
+        </section>
+    );
+};
 
-export default withRouter(ChildComponent);
+export default ChildComponent;

@@ -1,105 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import { toast } from 'react-toastify';
 import "./AddTodo.scss";
 
-class AddTodo extends React.Component {
-    state = {
-        title: '',
-        department: 'Operations',
-        deadline: ''
-    }
+const AddTodo = ({ addNewTodo }) => {
+    const [task, setTask] = useState({ title: '', department: 'Operations', deadline: '' });
+    const departments = ["Operations", "Finance", "Marketing", "Sales", "IT", "HR"];
 
-    departments = ["Operations", "Finance", "Marketing", "Sales", "IT", "HR"];
+    const handleChange = (e, field) => {
+        setTask({ ...task, [field]: e.target.value });
+    };
 
-    handleOnChangeTitle = (event) => {
-        this.setState({ title: event.target.value })
-    }
-
-    handleOnChangeDepartment = (event) => {
-        this.setState({ department: event.target.value })
-    }
-
-    handleOnChangeDeadline = (event) => {
-        this.setState({ deadline: event.target.value })
-    }
-
-
-    handleSubmit = (event) => {
-
+    const handleSubmit = (event) => {
         event.preventDefault();
 
-        let { title, department, deadline } = this.state;
-
-        // Validate dữ liệu: Phải nhập đủ cả 3
-        if (!title || !department || !deadline) {
+        if (!task.title || !task.department || !task.deadline) {
             toast.error('Missing required fields (Title, Dept or Deadline)!');
             return;
         }
 
-        let todo = {
+        addNewTodo({
             id: Math.floor(Math.random() * 10000),
-            title: title,
-            department: department,
-            deadline: deadline
-        }
+            ...task
+        });
 
-        this.props.addNewTodo(todo);
+        // Reset form
+        setTask({ title: '', department: 'Operations', deadline: '' });
+    };
 
-        // Reset form sau khi add
-        this.setState({
-            title: '',
-            department: 'Operations',
-            deadline: ''
-        })
-    }
-
-    render() {
-        let { title, department, deadline } = this.state;
-        return (
-            <div className='add-todo-container'>
-
-                <form onSubmit={(event) => this.handleSubmit(event)}>
-                    <div className="form-row">
-                        <div className='input-group'>
-                            <label>Task Name:</label>
-                            <input type='text'
-                                placeholder="Enter task..."
-                                value={title}
-                                onChange={(event) => this.handleOnChangeTitle(event)}
-
-                            />
-                        </div>
-
-                        <div className='input-group'>
-                            <label>Department:</label>
-                            <select
-                                value={department}
-                                onChange={(event) => this.handleOnChangeDepartment(event)}
-                            >
-                                {this.departments.map(item => (
-                                    <option key={item} value={item}>{item}</option>
-                                ))}
-                            </select>
-                        </div>
-
-                        <div className='input-group'>
-                            <label>Deadline:</label>
-                            <input type='date'
-                                value={deadline}
-                                onChange={(event) => this.handleOnChangeDeadline(event)}
-                            />
-                        </div>
-
-
-
-                        <button type="submit" className='btn-add'>
-                            Add Task
-                        </button>
+    return (
+        <section className='add-todo-container' aria-label="Add new task">
+            <form onSubmit={handleSubmit}>
+                <div className="form-row">
+                    <div className='input-group'>
+                        <label htmlFor="task-title">Task Name:</label>
+                        <input id="task-title" type='text' placeholder="Enter task..."
+                            value={task.title} onChange={(e) => handleChange(e, 'title')} />
                     </div>
-                </form>
-            </div>
-        )
-    }
-}
+
+                    <div className='input-group'>
+                        <label htmlFor="task-dept">Department:</label>
+                        <select id="task-dept" value={task.department} onChange={(e) => handleChange(e, 'department')}>
+                            {departments.map(item => <option key={item} value={item}>{item}</option>)}
+                        </select>
+                    </div>
+
+                    <div className='input-group'>
+                        <label htmlFor="task-deadline">Deadline:</label>
+                        <input id="task-deadline" type='date' value={task.deadline} onChange={(e) => handleChange(e, 'deadline')} />
+                    </div>
+
+                    <button type="submit" className='btn-add'>Add Task</button>
+                </div>
+            </form>
+        </section>
+    );
+};
 
 export default AddTodo;

@@ -1,35 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { toast } from 'react-toastify';
 
-class AddComponent extends React.Component {
-    state = {
-        name: '',
-        baseSalary: '',
-        workDays: '',
-        allowance: ''
-    }
+const AddComponent = ({ addNewSalaryUser }) => {
+    const [formData, setFormData] = useState({
+        name: '', baseSalary: '', workDays: '', allowance: ''
+    });
 
-    handleOnChangeInput = (event, id) => {
-        let copyState = { ...this.state };
-        copyState[id] = event.target.value;
-        this.setState({
-            ...copyState
-        })
-    }
+    const handleOnChangeInput = (e, id) => {
+        setFormData({ ...formData, [id]: e.target.value });
+    };
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        let { name, baseSalary, workDays, allowance } = this.state;
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const { name, baseSalary, workDays, allowance } = formData;
+
         if (!name || !baseSalary || !workDays) {
-            toast.error("Please enter all the information.");
+            toast.error("Please enter all required information.");
             return;
         }
 
-        // Tính lương tự động
-        let finalSalary = Math.floor((parseFloat(baseSalary) / 26) * parseFloat(workDays) + (parseFloat(allowance) || 0));
+        const finalSalary = Math.floor((parseFloat(baseSalary) / 26) * parseFloat(workDays) + (parseFloat(allowance) || 0));
 
-        // Gửi dữ liệu lên App.js qua props
-        this.props.addNewSalaryUser({
+        addNewSalaryUser({
             id: Math.floor(Math.random() * 10000).toString(),
             name: name,
             salary: finalSalary,
@@ -37,48 +29,42 @@ class AddComponent extends React.Component {
             avatar: `https://i.pravatar.cc/150?u=${name}`
         });
 
-        this.setState({ name: '', baseSalary: '', workDays: '', allowance: '' });
+        setFormData({ name: '', baseSalary: '', workDays: '', allowance: '' });
         toast.success("Salary calculation successful!");
-    }
+    };
 
-    render() {
-        let { name, baseSalary, workDays, allowance } = this.state;
-        return (
-            <div className='add-salary-container'>
-                <form className="salary-form">
+    return (
+        <section className='add-salary-container' aria-label="Add new salary record">
+            <form className="salary-form" onSubmit={handleSubmit}>
+                <div className="input-group">
+                    <label htmlFor="emp-name">Employee's full name</label>
+                    <input id="emp-name" type="text" value={formData.name} placeholder="Enter a name"
+                        onChange={(e) => handleOnChangeInput(e, 'name')} />
+                </div>
+
+                <div className="input-row">
                     <div className="input-group">
-                        <label>Employee's full name</label>
-                        <input type="text" value={name} placeholder="Enter a name"
-                            onChange={(event) => this.handleOnChangeInput(event, 'name')} />
+                        <label htmlFor="base-salary">Basic salary ($)</label>
+                        <input id="base-salary" type="number" value={formData.baseSalary} placeholder="Example: 3000"
+                            onChange={(e) => handleOnChangeInput(e, 'baseSalary')} />
                     </div>
-
-                    <div className="input-row">
-                        <div className="input-group">
-                            <label>Basic salary ($)</label>
-                            <input type="number" value={baseSalary} placeholder="Example: 3000"
-                                onChange={(event) => this.handleOnChangeInput(event, 'baseSalary')} />
-                        </div>
-                        <div className="input-group">
-                            <label>Number of working days</label>
-                            <input type="number" value={workDays} placeholder="Max: 26"
-                                onChange={(event) => this.handleOnChangeInput(event, 'workDays')} />
-                        </div>
-                    </div>
-
                     <div className="input-group">
-                        <label>Allowance ($)</label>
-                        <input type="number" value={allowance} placeholder="Allowance"
-                            onChange={(event) => this.handleOnChangeInput(event, 'allowance')} />
+                        <label htmlFor="work-days">Number of working days</label>
+                        <input id="work-days" type="number" value={formData.workDays} placeholder="Max: 26"
+                            onChange={(e) => handleOnChangeInput(e, 'workDays')} />
                     </div>
+                </div>
 
-                    <button type="submit" className="btn-submit"
-                        onClick={(event) => this.handleSubmit(event)}>
-                        Add to payroll
-                    </button>
-                </form>
-            </div>
-        )
-    }
-}
+                <div className="input-group">
+                    <label htmlFor="allowance">Allowance ($)</label>
+                    <input id="allowance" type="number" value={formData.allowance} placeholder="Allowance"
+                        onChange={(e) => handleOnChangeInput(e, 'allowance')} />
+                </div>
+
+                <button type="submit" className="btn-submit">Add to payroll</button>
+            </form>
+        </section>
+    );
+};
 
 export default AddComponent;

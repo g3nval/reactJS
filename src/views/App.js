@@ -1,96 +1,51 @@
 import React from 'react';
-
-import './App.scss';
-import Salary from './Salary/Salary';
-import ListToDo from './ToDos/ListToDo';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Home from './Home/Home.js';
-import ListUser from './Users/ListUser.js';
+
+import './App.scss';
 import Nav from './Nav/Nav.js';
-import DetailUser from './Users/DetailUser.js';
+import Home from './Home/Home.js';
 import Dashboard from './Dashboard/Dashboard.js';
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-} from "react-router-dom";
+import ListToDo from './ToDos/ListToDo';
+import Salary from './Salary/Salary';
+import ListUser from './Users/ListUser.js';
+import DetailUser from './Users/DetailUser.js';
 
+const App = () => {
+  return (
+    <BrowserRouter>
+      <div className="App">
+        <header className="App-header">
+          <Nav />
+        </header>
 
-class App extends React.Component {
+        <main className="App-main-content">
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/todo" component={ListToDo} />
+            <Route path="/salary" component={Salary} />
+            <Route path="/user" exact component={ListUser} />
+            <Route path="/user/:id" component={DetailUser} />
+          </Switch>
+        </main>
 
-  state = {
-    listUsersWithSalary: [
-      { id: '1', name: 'Jhon', salary: 1000, email: 'john@mail.com', avatar: 'https://i.imgur.com/LDOO4Qs.jpg' },
-      { id: '2', name: 'Maria', salary: 2000, email: 'maria@mail.com', avatar: 'https://i.imgur.com/DTfowdu.jpg' },
-      { id: '3', name: 'Admin', salary: 2500, email: 'admin@mail.com', avatar: 'https://i.imgur.com/yhW6Yw1.jpg' },
-      { id: '4', name: 'Maximus91', salary: 2000, email: 'Napoleon13@yahoo.com', avatar: 'https://i.pravatar.cc/150?img=13' }
-    ]
-  }
-
-
-  addNewSalaryUser = (user) => {
-    this.setState({
-      listUsersWithSalary: [...this.state.listUsersWithSalary, user]
-    })
-  }
-
-
-  deleteSalaryUser = (user) => {
-    let currentList = this.state.listUsersWithSalary.filter(item => item.id !== user.id);
-    this.setState({ listUsersWithSalary: currentList });
-  }
-  render() {
-    return (
-      <BrowserRouter>
-        <div className="App">
-
-          <header className="App-header">
-            <Nav />
-
-            <Switch>
-              <Route path="/" exact>
-                <Home />
-              </Route>
-              <Route path="/dashboard">
-                <Dashboard />
-              </Route>
-              <Route path="/todo">
-                <ListToDo />
-              </Route>
-              <Route path="/salary">
-                <Salary
-                  listUsers={this.state.listUsersWithSalary}
-                  addNewSalaryUser={this.addNewSalaryUser}
-                  deleteSalaryUser={this.deleteSalaryUser}
-                />
-              </Route>
-              <Route path="/user" exact>
-                <ListUser />
-              </Route>
-              <Route path="/user/:id">
-                <DetailUser listUsers={this.state.listUsersWithSalary} />
-              </Route>
-            </Switch>
-
-
-          </header>
-
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClickrtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-        </div>
-      </BrowserRouter>
-    );
-  }
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;

@@ -1,10 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducers/rootReducer';
+import authReducer from './slices/authSlice';
+import todoReducer from './slices/todoSlice';
+import userReducer from './slices/userSlice';
+import salaryReducer from './slices/SalarySlice';
 
-export const store = configureStore({
-    reducer: rootReducer,
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: false, // Tắt check strict để tránh lỗi warning nhỏ không cần thiết
-        }),
+const store = configureStore({
+    reducer: {
+        auth: authReducer,
+        todos: todoReducer,
+        users: userReducer,
+        salary: salaryReducer,
+    }
 });
+
+export default store;

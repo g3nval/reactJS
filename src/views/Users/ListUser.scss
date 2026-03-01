@@ -1,8 +1,38 @@
+
+$bg-dark: #18191a;
+$card-bg: #242526;
+$hover-bg: #3a3b3c;
+$primary-blue: #2374e1;
+$text-main: #e4e6eb;
+$text-sub: #b0b3b8;
+$border-color: #3e4042;
+
+
+.loader {
+    perspective: 700px;
+    padding: 20px;
+    text-align: center;
+
+    span {
+        color: $primary-blue;
+        font-weight: 400;
+        font-size: 2rem;
+        display: inline-block;
+        transform-origin: 0 70%;
+        transform-style: preserve-3d;
+        animation: flip 2.6s infinite linear;
+    }
+}
+
+@keyframes flip {
+    35%, 100% { transform: rotateZ(360deg); }
+}
+
 .list-user-container {
     padding: 30px 20px;
     max-width: 800px;
     margin: 0 auto;
-    color: #e4e6eb;
+    color: $text-main;
 
     .title {
         font-size: 24px;
@@ -17,105 +47,56 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
-        
-        .loader{
-        -webkit-perspective: 700px;
-        perspective: 700px;
-        padding: 10px 20px;
-        
-        span{
-            color:#1874d0;
-            font-weight: 400;
-            font-size: 2rem;
-            display: inline-block;
-            transform-origin: 0 70%;
-            transform-style: preserve-3d;
-            animation: flip 2.6s infinite linear;
-        }
-        
-        @keyframes flip{
-            35%{
-                transform: rotateZ(360deg);
-            }
-            100%{
-                transform: rotateZ(360deg);
-            }
-        }
-
-        }
 
         .user-card {
             display: flex;
             align-items: center;
-            background: #282c34; 
+            background: $card-bg;
             padding: 12px 20px;
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 
             &:hover {
-                background: #3a3b3c;
-                transform: translateX(10px); 
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                background: $hover-bg;
+                transform: translateX(10px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
 
-                .view-btn span {
-                    color: #2374e1;
-                }
+                .view-btn span { color: $primary-blue; }
             }
 
             .user-index {
                 font-weight: bold;
-                color: #b0b3b8;
+                color: $text-sub;
                 width: 30px;
             }
 
             .user-avatar {
                 margin: 0 15px;
                 img {
-                    width: 50px;
-                    height: 50px;
+                    width: 50px; height: 50px;
                     border-radius: 50%;
                     object-fit: cover;
-                    border: 2px solid #3e4042;
+                    border: 2px solid $border-color;
                 }
             }
 
             .user-info {
                 flex: 1;
-                .name {
-                    font-weight: 600;
-                    font-size: 16px;
-                    color: #ffffff;
-                }
-                .email {
-                    font-size: 14px;
-                    color: #b0b3b8;
-                }
+                .name { font-weight: 600; font-size: 16px; color: #ffffff; }
+                .email { font-size: 14px; color: $text-sub; }
             }
 
-            .view-btn {
-                span {
-                    font-size: 13px;
-                    font-weight: 500;
-                    color: #b0b3b8;
-                    transition: color 0.2s;
-                }
+            .view-btn span {
+                font-size: 13px;
+                font-weight: 500;
+                color: $text-sub;
             }
         }
     }
 }
 
-// Responsive
-@media (max-width: 480px) {
-    .list-user-container {
-        .user-card {
-            .view-btn {
-                display: none; 
-            }
-        }
-    }
-}
 
 .detail-user-container {
     padding: 30px;
@@ -176,29 +157,48 @@
                 }
             }
 
-            .menu-section {
-                padding: 10px 0;
+.menu-section {
+    padding: 10px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 
-                .menu-item {
-                    padding: 12px 20px;
-                    color: #b0b3b8;
-                    cursor: pointer;
-                    font-weight: 500;
-                    transition: all 0.2s;
-                    border-left: 3px solid transparent;
+    .menu-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 20px;
+        margin: 0;
 
-                    &:hover {
-                        background: #3a3b3c;
-                        color: #e4e6eb;
-                    }
+        color: #b0b3b8;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        
+        
+        background: transparent; 
+        border: none;
+        border-radius: 0; 
 
-                    &.active {
-                        background: rgba(35, 116, 225, 0.1);
-                        color: #2374e1;
-                        border-left: 3px solid #2374e1; 
-                    }
-                }
-            }
+        
+        transition: all 0.2s ease-in-out;
+        border-left: 3px solid transparent; 
+
+        &:hover {
+            background: #3a3b3c;
+            color: #e4e6eb;
+        }
+
+        &.active {
+            background: rgba(35, 116, 225, 0.1); 
+            color: #2374e1;
+            border-left: 3px solid #2374e1; 
+        }
+    }
+}
             
             .btn-back {
                 width: calc(100% - 40px);
@@ -219,7 +219,7 @@
 
        
         .profile-content {
-            flex: 1; // Chiếm hết phần còn lại
+            flex: 1; 
             background: #242526;
             border-radius: 8px;
             padding: 24px;
@@ -358,17 +358,12 @@
 
     }
 
-// Responsive 
+/* Responsive */
 @media (max-width: 768px) {
+    .list-user-container .view-btn { display: none; }
     .detail-user-container .profile-layout {
         flex-direction: column;
-        
-        .profile-sidebar {
-            width: 100%;
-        }
-        
-        .profile-content .content-panel .info-grid {
-            grid-template-columns: 1fr; 
-        }
+        .profile-sidebar { width: 100%; }
+        .profile-content .content-panel .info-grid { grid-template-columns: 1fr; }
     }
 }

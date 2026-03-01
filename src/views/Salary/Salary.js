@@ -1,70 +1,53 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import ChildComponent from './ChildComponent';
 import AddComponent from './AddComponent';
+import { addNewPerson, deletePerson } from '../../store/slices/SalarySlice';
 import "./Salary.scss";
-import { connect } from 'react-redux';
-import { addSalaryUser, deleteSalaryUser } from '../../store/actions/salaryActions';
 
-class Salary extends React.Component {
+const Salary = () => {
+    const dispatch = useDispatch();
 
+    //Lấy dữ liệu danh sách lương từ SalarySlice
+    const { listSalaries } = useSelector(state => state.salary);
 
+    //Lấy thông tin đăng nhập từ AuthSlice
+    const { currentUser, isLoggedIn } = useSelector(state => state.auth);
 
-    componentDidUpdate(prevProps, prevState) {
+    const isAdmin = isLoggedIn && currentUser?.role === 'Admin';
 
-        if (prevProps.listUsers !== this.props.listUsers) {
-            console.log(">> Salary Store Updated!", this.props.listUsers);
-        }
-    }
+    return (
+        <main className="salary-container">
+            <header className="salary-header">
+                <h1 className="salary-title">Salary Management</h1>
 
-    render() {
-        const { listUsers, addNewSalaryUser, deleteSalaryUser, currentUser, isLoggedIn } = this.props;
-        const isAdmin = isLoggedIn && currentUser && currentUser.role === 'Admin';
-        return (
-            <div className="salary-container">
-                <div className="salary-header">
-                    <h2 className="salary-title">Salary Management</h2>
-                    {isLoggedIn && (
-                        <div className="user-role-badge">
-                            Logged in as: <span className={isAdmin ? "role-admin" : "role-staff"}>
-                                {currentUser.name} ({currentUser.role})
-                            </span>
-                        </div>
-                    )}
-                </div>
-                <div className="salary-body">
-                    {isAdmin ? (
-                        <AddComponent addNewSalaryUser={addNewSalaryUser} />
-                    ) : (
-                        <div className="permission-info">
-                            * You don't have permission to add new salary records.
-                        </div>
-                    )}
-                    <ChildComponent
-                        arraypeople={listUsers}
-                        deletePerson={deleteSalaryUser}
-                        isAdmin={isAdmin}
+                {isLoggedIn && currentUser && (
+                    <div className="user-role-badge">
+                        Logged in as: <span className={isAdmin ? "role-admin" : "role-staff"}>
+                            {currentUser.username} ({currentUser.role})
+                        </span>
+                    </div>
+                )}
+            </header>
+
+            <section className="salary-body">
+                {isAdmin ? (
+                    <AddComponent
+                        addNewSalaryUser={(person) => dispatch(addNewPerson(person))}
                     />
-                </div>
-            </div>
-        );
-    }
-}
-
-
-const mapStateToProps = (state) => {
-    return {
-        listUsers: state.salary || [],
-        currentUser: state.auth.currentUser,
-        isLoggedIn: state.auth.isLoggedIn
-    };
+                ) : (
+                    <p className="permission-info">
+                        * Bạn không có quyền thêm mới bản ghi lương.
+                    </p>
+                )}
+                <ChildComponent
+                    arraypeople={listSalaries}
+                    deletePerson={(person) => dispatch(deletePerson(person))}
+                    isAdmin={isAdmin}
+                />
+            </section>
+        </main>
+    );
 };
 
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addNewSalaryUser: (person) => dispatch(addSalaryUser(person)),
-        deleteSalaryUser: (person) => dispatch(deleteSalaryUser(person))
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Salary);
+export default Salary;
